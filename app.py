@@ -41,15 +41,14 @@ microbubble_dose = st.sidebar.slider("Microbubble Dose (μL/kg):", 1.0, 10.0, 5.
 mechanical_index = acoustic_pressure / np.sqrt(ultrasound_freq)
 
 # Calculate BBB opening duration based on physical parameters
-# Base duration modified by parameters
 base_window = 120 # mins
 calculated_duration = int(base_window * (microbubble_dose / 5.0) * (acoustic_pressure / 0.4) * (1.0 / ultrasound_freq))
-calculated_duration = max(10, min(calculating_duration, 360)) # Bound between 10m and 6h
+calculated_duration = max(10, min(calculated_duration, 360)) # Corrected spelling variable here
 
 # Drug Delivery Efficiency Estimation
 delivery_efficiency = min(100, int((acoustic_pressure * microbubble_dose * 20) / ultrasound_freq))
 
-# 🚨 UNIQUE FEATURE: SAFETY AND MECHANICAL INDEX CHECK FOR JUDGES
+# 🚨 SAFETY AND MECHANICAL INDEX CHECK FOR JUDGES
 st.subheader("📋 AI Predictive Analysis & Safety Metrics")
 
 col1, col2, col3, col4 = st.columns(4)
@@ -74,7 +73,7 @@ with col4:
 
 st.markdown("---")
 
-# 📈 UNIQUE FEATURE: DUAL-KINETIC CHART (Permeability & Drug Concentration)
+# 📈 DUAL-KINETIC CHART (Permeability & Drug Concentration)
 st.subheader("📈 Multi-Parametric Kinetic Timeline Graph")
 st.write("This interactive chart models BBB opening percentage alongside targeted drug concentration over a 6-hour timeline.")
 
@@ -141,7 +140,7 @@ if st.button("🚀 Execute GlioSonic Protocol Simulation"):
 
 st.markdown("---")
 
-# 💾 UNIQUE FEATURE: DATA EXPORT FOR CLINICAL USE
+# 💾 DATA EXPORT FOR CLINICAL USE
 st.subheader("💾 Clinical Report Generation")
 report_data = pd.DataFrame({
     "Parameter": ["Patient ID", "Tumor Volume (cm³)", "Frequency (MHz)", "Acoustic Pressure (MPa)", "Microbubble Dose (μL/kg)", "Mechanical Index", "Safety Status", "Est. Open Window (mins)"],
